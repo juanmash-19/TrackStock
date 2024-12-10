@@ -2,63 +2,65 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        // Obtiene todos los usuarios
+        return Usuario::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        // Valida los datos recibidos
+        $validated = $request->validate([
+            'nombre_usuario' => 'required|string|max:255',
+            'correo' => 'required|email|unique:usuarios',
+            'contraseña' => 'required|string|min:8',
+            'rol' => 'required|in:admin,empleado,cliente',
+            'id_cliente' => 'nullable|exists:clientes,id',
+            'id_empleado' => 'nullable|exists:empleados,id',
+        ]);
+
+        // Crea un nuevo usuario
+        $usuario = Usuario::create($validated);
+
+        return response()->json($usuario, 201);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        // Muestra un usuario específico
+        return Usuario::findOrFail($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
+        // Valida los datos recibidos
+        $validated = $request->validate([
+            'nombre_usuario' => 'string|max:255',
+            'correo' => 'email|unique:usuarios,correo,' . $id,
+            'contraseña' => 'string|min:8',
+            'rol' => 'in:admin,empleado,cliente',
+            'id_cliente' => 'nullable|exists:clientes,id',
+            'id_empleado' => 'nullable|exists:empleados,id',
+        ]);
+
+        // Encuentra el usuario y actualiza sus datos
+        $usuario = Usuario::findOrFail($id);
+        $usuario->update($validated);
+
+        return response()->json($usuario);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy($id)
     {
-        //
-    }
+        // Elimina un usuario
+        Usuario::destroy($id);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return response()->json(['message' => 'Usuario eliminado']);
     }
 }
