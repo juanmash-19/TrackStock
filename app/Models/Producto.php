@@ -14,10 +14,23 @@ class Producto extends Model
         'descripcion',
         'precio',
         'stock',
+        'id_categoria',
+        'id_sucursal',
     ];
+
+    public function categoria()
+    {
+        return $this->belongsTo(Categoria::class, 'id_categoria');
+    }
+
+    public function sucursal()
+    {
+        return $this->belongsTo(Sucursal::class, 'id_sucursal');
+    }
 
     public function ventas()
     {
         return $this->hasMany(Venta::class, 'id_producto');
     }
 }
+

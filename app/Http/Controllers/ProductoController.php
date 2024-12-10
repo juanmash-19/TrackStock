@@ -13,18 +13,20 @@ class ProductoController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:255',
-            'descripcion' => 'nullable|string',
-            'precio' => 'required|numeric|min:0',
-            'stock' => 'required|integer|min:0',
-        ]);
+{
+    $validated = $request->validate([
+        'nombre' => 'required|string|max:255',
+        'descripcion' => 'nullable|string',
+        'precio' => 'required|numeric|min:0',
+        'stock' => 'required|integer|min:0',
+        'id_categoria' => 'required|exists:categorias,id',
+        'id_sucursal' => 'required|exists:sucursales,id',
+    ]);
 
-        $producto = Producto::create($validated);
+    $producto = Producto::create($validated);
 
-        return response()->json($producto, 201);
-    }
+    return response()->json($producto, 201);
+}
 
     public function show($id)
     {
