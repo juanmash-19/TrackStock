@@ -2,54 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Producto;
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 
-class ProductoController extends Controller
+class CategoriaController extends Controller
 {
+    // Mostrar todas las categorías
     public function index()
     {
-        return Producto::with('categoria')->get();
+        return Categoria::all(); // Devuelve todas las categorías
     }
 
+    // Crear una nueva categoría
     public function store(Request $request)
     {
+        // Validación de los datos de entrada
         $validated = $request->validate([
-            'nombre' => 'required|string|max:150',
-            'precio' => 'required|numeric',
+            'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
-            'id_categoria' => 'required|exists:categorias,id',
         ]);
 
-        $producto = Producto::create($validated);
+        // Crear la categoría en la base de datos
+        $categoria = Categoria::create($validated);
 
-        return response()->json($producto, 201);
+        // Responder con la categoría recién creada
+        return response()->json($categoria, 201);
     }
 
+    // Mostrar una categoría específica
     public function show($id)
     {
-        return Producto::with('categoria')->findOrFail($id);
+        // Encontrar una categoría por su ID o fallar
+        return Categoria::findOrFail($id);
     }
 
+    // Actualizar una categoría existente
     public function update(Request $request, $id)
     {
+        // Validación de los datos de entrada
         $validated = $request->validate([
-            'nombre' => 'string|max:150',
-            'precio' => 'numeric',
+            'nombre' => 'string|max:255',
             'descripcion' => 'nullable|string',
-            'id_categoria' => 'exists:categorias,id',
         ]);
 
-        $producto = Producto::findOrFail($id);
-        $producto->update($validated);
+        // Buscar la categoría por ID
+        $categoria = Categoria::findOrFail($id);
 
-        return response()->json($producto);
+        // Actualizar la categoría
+        $categoria->update($validated);
+
+        // Responder con la categoría actualizada
+        return response()->json($categoria);
     }
 
+    // Eliminar una categoría
     public function destroy($id)
     {
-        Producto::destroy($id);
+        // Eliminar la categoría por ID
+        Categoria::destroy($id);
 
-        return response()->json(['message' => 'Producto eliminado']);
+        // Responder con un mensaje de éxito
+        return response()->json(['message' => 'Categoría eliminada']);
     }
 }

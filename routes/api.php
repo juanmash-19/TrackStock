@@ -106,3 +106,4 @@ Route::post('/empleados', [EmpleadoController::class, 'store']);
 Route::get('/empleados/{id}', [EmpleadoController::class, 'show']);
 Route::put('/empleados/{id}', [EmpleadoController::class, 'update']);
 Route::delete('/empleados/{id}', [EmpleadoController::class, 'destroy']);
+
