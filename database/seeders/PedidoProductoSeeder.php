@@ -2,16 +2,24 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\PedidoProducto;
 
 class PedidoProductoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        //
+        // Insertar datos de ejemplo en la tabla pedido_producto
+        PedidoProducto::create([
+            'id_pedido' => 1,
+            'id_producto' => 1,
+            'cantidad' => 5,
+        ]);
+
+        PedidoProducto::create([
+            'id_pedido' => 1,
+            'id_producto' => 2,
+            'cantidad' => 10,
+        ]);
     }
 }
