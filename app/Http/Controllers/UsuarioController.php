@@ -9,13 +9,11 @@ class UsuarioController extends Controller
 {
     public function index()
     {
-        // Obtiene todos los usuarios
         return Usuario::all();
     }
 
     public function store(Request $request)
     {
-        // Valida los datos recibidos
         $validated = $request->validate([
             'nombre_usuario' => 'required|string|max:255',
             'correo' => 'required|email|unique:usuarios',
@@ -25,7 +23,6 @@ class UsuarioController extends Controller
             'id_empleado' => 'nullable|exists:empleados,id',
         ]);
 
-        // Crea un nuevo usuario
         $usuario = Usuario::create($validated);
 
         return response()->json($usuario, 201);
@@ -33,13 +30,11 @@ class UsuarioController extends Controller
 
     public function show($id)
     {
-        // Muestra un usuario específico
         return Usuario::findOrFail($id);
     }
 
     public function update(Request $request, $id)
     {
-        // Valida los datos recibidos
         $validated = $request->validate([
             'nombre_usuario' => 'string|max:255',
             'correo' => 'email|unique:usuarios,correo,' . $id,
@@ -49,7 +44,6 @@ class UsuarioController extends Controller
             'id_empleado' => 'nullable|exists:empleados,id',
         ]);
 
-        // Encuentra el usuario y actualiza sus datos
         $usuario = Usuario::findOrFail($id);
         $usuario->update($validated);
 
@@ -58,7 +52,6 @@ class UsuarioController extends Controller
 
     public function destroy($id)
     {
-        // Elimina un usuario
         Usuario::destroy($id);
 
         return response()->json(['message' => 'Usuario eliminado']);

@@ -16,7 +16,6 @@ class Producto extends Model
         'stock',
     ];
 
-    // Relación con Ventas
     public function ventas()
     {
         return $this->hasMany(Venta::class, 'id_producto');

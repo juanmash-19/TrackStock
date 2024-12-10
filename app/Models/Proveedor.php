@@ -15,8 +15,6 @@ class Proveedor extends Model
         'direccion',
     ];
 
-    // Relación con la tabla de productos o ventas si es necesario
-    // Ejemplo: un proveedor puede tener muchos productos
     public function productos()
     {
         return $this->hasMany(Producto::class);

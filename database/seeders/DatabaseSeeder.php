@@ -12,15 +12,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Usar factory para crear 10 usuarios
         Usuario::factory(10)->create();
 
-        // Crear un usuario específico con datos personalizados
         Usuario::factory()->create([
-            'nombre_usuario' => 'Test User', // nombre_usuario en lugar de name
-            'correo' => 'test@example.com',  // correo en lugar de email
-            'contraseña' => 'password123',   // Proporciona una contraseña segura
-            'rol' => 'admin',  // Puede ser admin, empleado, cliente, etc.
+            'nombre_usuario' => 'Test User',
+            'correo' => 'test@example.com',
+            'contraseña' => 'password123',
+            'rol' => 'admin',
         ]);
     }
 }

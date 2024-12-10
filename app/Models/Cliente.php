@@ -17,7 +17,6 @@ class Cliente extends Model
         'direccion',
     ];
 
-    // Relación con el modelo Usuario
     public function usuario()
     {
         return $this->hasOne(Usuario::class);

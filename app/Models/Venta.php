@@ -16,13 +16,11 @@ class Venta extends Model
         'total',
     ];
 
-    // Relación con Usuario
     public function usuario()
     {
         return $this->belongsTo(Usuario::class, 'id_usuario');
     }
 
-    // Relación con Producto
     public function producto()
     {
         return $this->belongsTo(Producto::class, 'id_producto');

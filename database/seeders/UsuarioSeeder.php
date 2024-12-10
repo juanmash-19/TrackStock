@@ -12,7 +12,7 @@ class UsuarioSeeder extends Seeder
         Usuario::create([
             'nombre_usuario' => 'admin',
             'correo' => 'admin@dominio.com',
-            'contraseña' => 'admin1234', // La contraseña será cifrada
+            'contraseña' => 'admin1234',
             'rol' => 'admin'
         ]);
 

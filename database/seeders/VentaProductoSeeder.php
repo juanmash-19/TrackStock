@@ -9,7 +9,6 @@ class VentaProductoSeeder extends Seeder
 {
     public function run()
     {
-        // Insertar datos de ejemplo en la tabla venta_producto
         VentaProducto::create([
             'id_venta' => 1,
             'id_producto' => 1,

@@ -2,16 +2,21 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\ProveedorProducto;
 
 class ProveedorProductoSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
-        //
+        ProveedorProducto::create([
+            'id_proveedor' => 1,
+            'id_producto' => 1,
+        ]);
+
+        ProveedorProducto::create([
+            'id_proveedor' => 1,
+            'id_producto' => 2,
+        ]);
     }
 }

@@ -18,19 +18,16 @@ class Usuario extends Model
         'id_empleado'
     ];
 
-    // Relación con Cliente (si aplica)
     public function cliente()
     {
         return $this->belongsTo(Cliente::class, 'id_cliente');
     }
 
-    // Relación con Empleado (si aplica)
     public function empleado()
     {
         return $this->belongsTo(Empleado::class, 'id_empleado');
     }
 
-    // Setea la contraseña de forma segura
     public function setContraseñaAttribute($value)
     {
         $this->attributes['contraseña'] = bcrypt($value);

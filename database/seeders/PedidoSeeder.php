@@ -9,7 +9,6 @@ class PedidoSeeder extends Seeder
 {
     public function run()
     {
-        // Insertar datos de ejemplo en la tabla pedidos
         Pedido::create([
             'id_proveedor' => 1,
             'fecha' => '2024-12-10',

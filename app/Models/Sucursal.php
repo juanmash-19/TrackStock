@@ -14,6 +14,4 @@ class Sucursal extends Model
         'direccion',
         'telefono',
     ];
-
-    // Aquí puedes añadir relaciones si es necesario.
 }

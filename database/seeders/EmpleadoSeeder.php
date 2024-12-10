@@ -9,7 +9,6 @@ class EmpleadoSeeder extends Seeder
 {
     public function run()
     {
-        // Insertar datos de ejemplo en la tabla empleados
         Empleado::create([
             'nombre' => 'Juan Pérez',
             'cedula' => '123456789',
