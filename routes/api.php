@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\SucursalController;
@@ -13,7 +15,20 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\PedidoProductoController;
 use App\Http\Controllers\ProveedorProductoController;
 use App\Http\Controllers\EmpleadoController;
-use App\Http\Controllers\UsuarioController;
+
+// Rutas de Usuarios
+Route::get('/usuarios', [UsuarioController::class, 'index']);
+Route::post('/usuarios', [UsuarioController::class, 'store']);
+Route::get('/usuarios/{id}', [UsuarioController::class, 'show']);
+Route::put('/usuarios/{id}', [UsuarioController::class, 'update']);
+Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy']);
+
+// Rutas de Categorías
+Route::get('/categorias', [CategoriaController::class, 'index']);
+Route::post('/categorias', [CategoriaController::class, 'store']);
+Route::get('/categorias/{id}', [CategoriaController::class, 'show']);
+Route::put('/categorias/{id}', [CategoriaController::class, 'update']);
+Route::delete('/categorias/{id}', [CategoriaController::class, 'destroy']);
 
 // Rutas de Ventas
 Route::get('/ventas', [VentaController::class, 'index']);
@@ -91,17 +106,3 @@ Route::post('/empleados', [EmpleadoController::class, 'store']);
 Route::get('/empleados/{id}', [EmpleadoController::class, 'show']);
 Route::put('/empleados/{id}', [EmpleadoController::class, 'update']);
 Route::delete('/empleados/{id}', [EmpleadoController::class, 'destroy']);
-
-// Rutas de Usuarios
-Route::prefix('usuarios')->group(function () {
-    Route::get('/', [UsuarioController::class, 'index']);
-    Route::post('/', [UsuarioController::class, 'store']);
-    Route::get('/{id}', [UsuarioController::class, 'show']);
-    Route::put('/{id}', [UsuarioController::class, 'update']);
-    Route::delete('/{id}', [UsuarioController::class, 'destroy']);
-});
-
-// Ruta para obtener el usuario autenticado (requiere token de autenticación)
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
