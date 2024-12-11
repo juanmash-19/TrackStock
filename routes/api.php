@@ -43,6 +43,10 @@ Route::post('/productos', [ProductoController::class, 'store']);
 Route::get('/productos/{id}', [ProductoController::class, 'show']);
 Route::put('/productos/{id}', [ProductoController::class, 'update']);
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy']);
+<<<<<<< HEAD
+=======
+Route::get('productos/search/{name}', [ProductoController::class, 'searchByName']);
+>>>>>>> 7541de6 (Subiendo la version final)
 
 // Rutas de Sucursales
 Route::get('/sucursales', [SucursalController::class, 'index']);

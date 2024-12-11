@@ -32,5 +32,14 @@ class Producto extends Model
     {
         return $this->hasMany(Venta::class, 'id_producto');
     }
+<<<<<<< HEAD
 }
 
+=======
+<<<<<<< HEAD
+}
+=======
+}
+
+>>>>>>> 1b47ab46ab601f28ddfa62a0492be6a816f62625
+>>>>>>> 7541de6 (Subiendo la version final)
